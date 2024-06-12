@@ -66,3 +66,15 @@
       flex-wrap: wrap-reverse;
       gap: 12px;
   }
+.edite button{
+    background-color: #72bafa;
+    padding: 2vh;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+.edite{
+  margin-top: 6vh;
+  display: flex;
+  justify-content: center;
+}

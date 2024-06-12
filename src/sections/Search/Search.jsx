@@ -117,7 +117,13 @@ export default function Search() {
               '{space}': 'مسافة'
             }}
           />
-
+<div className='edite'>
+  <a href="https://dictionary-server-ytyo.onrender.com/edite" target='_blank'>
+  <button>
+التعديل على البيانات
+  </button>
+  </a>
+</div>
           <table className="mt-5 pb-5">
             <thead>
               <tr>
