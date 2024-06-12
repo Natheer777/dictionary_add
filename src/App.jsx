@@ -11,7 +11,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/dictionary_add/" element={<Home />} />
         </Routes>
       </Router>
     </>
