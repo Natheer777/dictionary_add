@@ -34,7 +34,7 @@ export default function Search() {
           setTotalResults(jsonData.TotalResults || 0);
           setTotalPages(jsonData.TotalPages || 0);
 
-          axios.post('http://localhost:3010/insertWords', { words: jsonData.Items })
+          axios.post('https://dictionary-server-ytyo.onrender.com/insertWords', { words: jsonData.Items })
             .then((response) => {
               console.log('Data inserted:', response.data);
             })
