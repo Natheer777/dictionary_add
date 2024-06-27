@@ -34,7 +34,7 @@ export default function Search() {
           setTotalResults(jsonData.TotalResults || 0);
           setTotalPages(jsonData.TotalPages || 0);
 
-          axios.post('https://dictionary-server-ytyo.onrender.com/insertWords', { words: jsonData.Items })
+          axios.post('https://dictionary-backend-zrxn.onrender.com/insertWords', { words: jsonData.Items })
             .then((response) => {
               console.log('Data inserted:', response.data);
             })
@@ -79,7 +79,7 @@ export default function Search() {
     <>
       <div className="App">
         <div className="container pt-5">
-          <h1 className='text-center mb-5'>إدخال بيانات جديدة الى القاموس</h1>
+          <h1 className='text-center mb-5'>إدخال بيانات جديدة الى ملف الاكسل</h1>
           <div className="SearchWord">
             <input
               type="text"
@@ -118,7 +118,7 @@ export default function Search() {
             }}
           />
 <div className='edite'>
-  <a href="https://dictionary-server-ytyo.onrender.com/edite" target='_blank'>
+  <a href="https://dictionary-backend-zrxn.onrender.com/edite" target='_blank'>
   <button>
 التعديل على البيانات
   </button>
