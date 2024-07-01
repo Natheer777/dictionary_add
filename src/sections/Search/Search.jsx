@@ -1,85 +1,66 @@
-import './Search.css';
-import { useState } from 'react';
-import Keyboard from 'react-simple-keyboard';
-import 'react-simple-keyboard/build/css/index.css';
-import axios from 'axios';
+import "./Search.css";
+import { useState } from "react";
+import "react-simple-keyboard/build/css/index.css";
+import axios from "axios";
 
 export default function Search() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [keyboardInput, setKeyboardInput] = useState('');
   const [totalResults, setTotalResults] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
   const handleSearch = () => {
     const data = JSON.stringify({ Page: 0, Term: searchQuery, Mode: 0 });
-    const proxyUrl = 'https://a-lokl.onrender.com/https://shinjikai.app/rpc/SearchWords';
+    const proxyUrl =
+      "https://a-lokl.onrender.com/https://shinjikai.app/rpc/SearchWords";
 
     const config = {
-      method: 'post',
+      method: "post",
       url: proxyUrl,
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       data: data,
     };
 
-    axios.request(config)
+    axios
+      .request(config)
       .then((response) => {
         const jsonData = response.data;
-        console.log('Response Data:', jsonData);
+        console.log("Response Data:", jsonData);
 
         if (jsonData) {
           setSearchResults(jsonData.Items || []);
           setTotalResults(jsonData.TotalResults || 0);
           setTotalPages(jsonData.TotalPages || 0);
 
-          axios.post('https://dictionary-backend-zrxn.onrender.com/insertWords', { words: jsonData.Items })
+          axios
+            .post("https://dictionary-backend-zrxn.onrender.com/insertWords", {
+              words: jsonData.Items,
+            })
             .then((response) => {
-              console.log('Data inserted:', response.data);
+              console.log("Data inserted:", response.data);
             })
             .catch((error) => {
-              console.error('Error inserting data:', error);
+              console.error("Error inserting data:", error);
             });
         }
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
         setSearchResults([]);
         setTotalResults(0);
         setTotalPages(0);
       });
   };
 
-  const handleClear = () => {
-    setSearchQuery('');
-    setSearchResults([]);
-    setKeyboardInput('');
-    setTotalResults(0);
-    setTotalPages(0);
-  };
-
-  const handleMessage = () => {
-    alert('تم إرسال الرسالة!');
-  };
-
-  const onChange = (input) => {
-    setKeyboardInput(input);
-    setSearchQuery(input);
-  };
-
-  const handleKeyPress = (button) => {
-    if (button === "{space}") {
-      setKeyboardInput((prevInput) => prevInput + " ");
-      setSearchQuery((prevQuery) => prevQuery + " ");
-    }
-  };
-
   return (
     <>
       <div className="App">
         <div className="container pt-5">
-          <h1 className='text-center mb-5'>إدخال بيانات جديدة الى ملف الاكسل</h1>
+          <h1 className="text-center mb-5">
+            إدخال بيانات جديدة الى ملف الاكسل
+          </h1>
           <div className="SearchWord">
             <input
               type="text"
@@ -89,8 +70,9 @@ export default function Search() {
               placeholder="ادخل كلمة البحث هنا"
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <button id="searchButton" onClick={handleSearch}>بحث</button>
-            {/* <button id="clearButton" onClick={handleClear}>مسح</button> */}
+            <button id="searchButton" onClick={handleSearch}>
+              بحث
+            </button>
           </div>
 
           <div className="search-info">
@@ -99,31 +81,14 @@ export default function Search() {
             <div>الكلمة التي تم البحث عنها : {searchQuery}</div>
           </div>
 
-          <Keyboard
-            layoutName="default"
-            onChange={onChange}
-            onKeyPress={handleKeyPress}
-            layout={{
-              default: [
-                'ض ص ث ق ف غ ع ه خ ح ج د',
-                'ش س ي ب ل ا ت ن م ك ط',
-                'ئ ء ؤ ر لا ى ة و ز ظ',
-                'ذ 1 2 3 4 5 6 7 8 9 0 {bksp}',
-                '{space}'
-              ]
-            }}
-            display={{
-              '{bksp}': 'حذف',
-              '{space}': 'مسافة'
-            }}
-          />
-<div className='edite'>
-  <a href="https://dictionary-backend-zrxn.onrender.com/edite" target='_blank'>
-  <button>
-التعديل على البيانات
-  </button>
-  </a>
-</div>
+          <div className="edite">
+            <a
+              href="https://dictionary-backend-zrxn.onrender.com/edite"
+              target="_blank"
+            >
+              <button>التعديل على البيانات</button>
+            </a>
+          </div>
           <table className="mt-5 pb-5">
             <thead>
               <tr>
@@ -131,11 +96,34 @@ export default function Search() {
                 <th>Kana</th>
                 <th>Meaning Summary</th>
                 <th>Short Meaning Summary</th>
+                <th>Writings</th>
+                <th>الكلمة</th>
+                <th>المعنى</th>
+                <th>النطق</th>
+                <th>التعريف</th>
+                <th>الأمثلة</th>
+                <th>التصنيف النحوي</th>
+                <th>الاشتقاقات و التصريفات</th>
+                <th>الملاحظات الثقافية</th>
+                <th>المصادر و المراجع</th>
+                <th>الأمثلة الصوتية</th>
+                <th>المرادف</th>
+                <th>العبارات الاصطلاحية</th>
+                <th>الاستعمالات الشائعة</th>
+                <th>الرمز و الأصل اللغوي</th>
+                <th>الصور</th>
+                <th>التعليمات و الملاحظات</th>
+                <th>الفئة</th>
+                <th>الأمثلة السياقية</th>
+                <th>الاختصارات</th>
+                <th>التنبيهات النحوية</th>
               </tr>
             </thead>
             <tbody>
               {searchResults.length === 0 ? (
-                <tr><td colSpan="4">لم يتم العثور على نتائج</td></tr>
+                <tr>
+                  <td colSpan="4">لم يتم العثور على نتائج</td>
+                </tr>
               ) : (
                 searchResults.map((item) => (
                   <tr key={item.Id}>
@@ -143,15 +131,42 @@ export default function Search() {
                     <td>{item.Kana}</td>
                     <td>{item.MeaningSummary}</td>
                     <td>{item.ShortMeaningSummary}</td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+                    <td>
+                      {item.Writings.map((writing, index) => (
+                        <span key={index}>
+                          {writing.Text}
+                          {index < item.Writings.length - 1 && ", "}
+                        </span>
+                      ))}
+                    </td>
 
-      
+                    <td>{item["الكلمة"]}</td>
+                    <td>{item["المعنى"]}</td>
+                    <td>{item["النطق"]}</td>
+                    <td>{item["التعريف"]}</td>
+                    <td>{item["الأمثلة"]}</td>
+                    <td>{item["التصنيف النحوي"]}</td>
+                    <td>{item["الاشتقاقات و التصريفات"]}</td>
+                    <td>{item["الملاحظات الثقافية"]}</td>
+                    <td>{item["المصادر و المراجع"]}</td>
+                    <td>{item["الأمثلة الصوتية"]}</td>
+                    <td>{item["المرادف"]}</td>
+                    <td>{item["العبارات الاصطلاحية"]}</td>
+                    <td>{item["الاستعمالات الشائعة"]}</td>
+                    <td>{item["الرمز و الأصل اللغوي"]}</td>
+                    <td>{item["الصور"]}</td>
+                    <td>{item["التعليمات و الملاحظات"]}</td>
+                    <td>{item["الفئة"]}</td>
+                    <td>{item["الأمثلة السياقية"]}</td>
+                    <td>{item["الاختصارات"]}</td>
+                    <td>{item["التنبيهات النحوية"]}</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
-              </div>
     </>
   );
 }
