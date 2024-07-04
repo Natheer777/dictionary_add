@@ -4,7 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-div#root body{
+div#root{
   background-color: aliceblue;
   font-family: "Cairo", sans-serif;
   font-optical-sizing: auto;
