@@ -226,8 +226,14 @@ export default function Search() {
             const insertResponse = await axios.post(
               "https://dictionary-backend-zrxn.onrender.com/insertWords",
               {
-                words: processedItems,
+                words: processedItems
+              },
+              {
+                headers: {
+                  'Content-Type': 'application/json'
+                }
               }
+          
             );
             console.log("Data inserted:", insertResponse.data);
           } catch (insertError) {
