@@ -277,7 +277,7 @@ export default function Search() {
             <div>الكلمات التي تم البحث عنها : {searchQuery}</div>
           </div>
 
-          <div className="edite">
+          {/* <div className="edite">
             <a
               href="https://dictionary-backend-zrxn.onrender.com/edite"
               target="_blank"
@@ -285,7 +285,7 @@ export default function Search() {
             >
               <button>التعديل على البيانات</button>
             </a>
-          </div>
+          </div> */}
           <table className="mt-5 pb-5">
             <thead>
               <tr>
