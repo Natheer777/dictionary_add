@@ -35,7 +35,7 @@
 //           setTotalPages(jsonData.TotalPages || 0);
 
 //           axios
-//             .post("https://dictionary-backend-zrxn.onrender.com/insertWords", {
+//             .post("https://database-work.onrender.com/insertWords", {
 //               words: jsonData.Items,
 //             })
 //             .then((response) => {
@@ -83,7 +83,7 @@
 
 //           <div className="edite">
 //             <a
-//               href="https://dictionary-backend-zrxn.onrender.com/edite"
+//               href="https://database-work.onrender.com/edite"
 //               target="_blank"
 //             >
 //               <button>التعديل على البيانات</button>
@@ -224,7 +224,7 @@ export default function Search() {
           // إرسال البيانات إلى API insertWords
           try {
             const insertResponse = await axios.post(
-              "https://dictionary-backend-zrxn.onrender.com/insertWords",
+              "https://database-work.onrender.com/insertWords",
               {
                 words: processedItems
               },
@@ -279,7 +279,7 @@ export default function Search() {
 
           {/* <div className="edite">
             <a
-              href="https://dictionary-backend-zrxn.onrender.com/edite"
+              href="https://database-work.onrender.com/edite"
               target="_blank"
               rel="noopener noreferrer"
             >
