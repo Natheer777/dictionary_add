@@ -35,7 +35,7 @@
 //           setTotalPages(jsonData.TotalPages || 0);
 
 //           axios
-//             .post("https://database-work.onrender.com/insertWords", {
+//             .post("https://api.ajls.online/insertWords", {
 //               words: jsonData.Items,
 //             })
 //             .then((response) => {
@@ -83,7 +83,7 @@
 
 //           <div className="edite">
 //             <a
-//               href="https://database-work.onrender.com/edite"
+//               href="https://api.ajls.online/edite"
 //               target="_blank"
 //             >
 //               <button>التعديل على البيانات</button>
@@ -228,7 +228,7 @@ export default function Search() {
           // إرسال البيانات إلى API insertWords
           try {
             const insertResponse = await axios.post(
-              "https://database-work.onrender.com/insertWords",
+              "https://api.ajls.online/insertWords",
               {
                 words: processedItems
               },
@@ -283,7 +283,7 @@ export default function Search() {
 
           {/* <div className="edite">
             <a
-              href="https://database-work.onrender.com/edite"
+              href="https://api.ajls.online/edite"
               target="_blank"
               rel="noopener noreferrer"
             >
